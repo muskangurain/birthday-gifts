@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Gifts 💝</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ffb3c6, #ffd6e8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* floating gifts */
+.gift-float {
+    position: absolute;
+    bottom: -20px;
+    animation: float 7s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-900px) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* card */
+.card {
+    background: white;
+    padding: 55px 60px;
+    border-radius: 35px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(255, 77, 136, 0.35);
+    max-width: 450px;
+    z-index: 10;
+}
+
+.card h1 {
+    color: #e60073;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* big gift icon instead of heart */
+.big-gift {
+    font-size: 90px;
+    margin: 20px 0 30px;
+    animation: pop 1.3s infinite;
+}
+
+@keyframes pop {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.2); }
+    60%  { transform: scale(1); }
+}
+
+/* buttons */
+.buttons {
+    position: relative;
+    height: 120px;
+}
+
+button {
+    font-size: 22px;
+    padding: 14px 38px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#yes {
+    background: #ff4d88;
+    color: white;
+}
+
+#yes:hover {
+    transform: scale(1.1);
+}
+
+#no {
+    background: #cfcfcf;
+    color: #444;
+    position: absolute;
+}
+
+/* final screen */
+.final {
+    background: white;
+    padding: 70px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(255, 77, 136, 0.35);
+}
+
+.final h1 {
+    color: #e60073;
+    font-size: 32px;
+}
+
+.final p {
+    font-size: 22px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Will you buy gifts for me on this birthday? 💝</h1>
+
+    <div class="big-gift">🎁</div>
+
+    <div class="buttons">
+        <button id="yes">YES 🎁</button>
+        <button id="no">NO 🙃</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+
+// NO button escapes
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 260;
+    const y = Math.random() * 80;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// YES click message updated
+yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+        <div class="final">
+            <h1>aww thankyou so much ... 🎁</h1>
+        </div>
+    `;
+});
+
+// floating gift background
+setInterval(() => {
+    const gift = document.createElement("div");
+    gift.className = "gift-float";
+
+    const gifts = ["🎁","💝","🧸","🎀","🛍️","🎉"];
+    gift.innerHTML = gifts[Math.floor(Math.random()*gifts.length)];
+
+    gift.style.left = Math.random() * 100 + "vw";
+    gift.style.fontSize = (22 + Math.random() * 24) + "px";
+
+    document.body.appendChild(gift);
+
+    setTimeout(() => gift.remove(), 7000);
+}, 420);
+</script>
+
+</body>
+</html>
